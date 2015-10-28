@@ -14,19 +14,27 @@ dropLastDigit n = n `div` 10
 -- Exercise 2 -----------------------------------------
 
 toRevDigits :: Integer -> [Integer]
-toRevDigits = undefined
+toRevDigits n
+    | n > 0  = (lastDigit n) : toRevDigits (dropLastDigit n)
+    | otherwise = []
 
 -- Exercise 3 -----------------------------------------
 
 -- Double every second number in a list starting on the left.
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther = undefined
+doubleEveryOther [] = []
+doubleEveryOther (x:xs)
+    | odd (length xs) = x : (head xs) * 2 : doubleEveryOther (tail xs)
+    | otherwise = x : doubleEveryOther xs
 
 -- Exercise 4 -----------------------------------------
 
 -- Calculate the sum of all the digits in every Integer.
 sumDigits :: [Integer] -> Integer
-sumDigits = undefined
+sumDigits xs = sum $ divideAllToSingleNum xs
+
+divideAllToSingleNum :: [Integer] -> [Integer]
+divideAllToSingleNum xs = concat $ map (\x -> toRevDigits x) xs
 
 
 -- Exercise 5 -----------------------------------------

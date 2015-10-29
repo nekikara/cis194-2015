@@ -41,7 +41,7 @@ divideAllToSingleNum xs = concat $ map (\x -> toRevDigits x) xs
 
 -- Validate a credit card number using the above functions.
 luhn :: Integer -> Bool
-luhn = undefined
+luhn n = (lastDigit . sumDigits . doubleEveryOther . toRevDigits $ n) == 0
 
 -- Exercise 6 -----------------------------------------
 

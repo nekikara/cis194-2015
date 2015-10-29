@@ -55,8 +55,11 @@ ex5Tests = [ Test "luhn test" testLuhn [(5594589764218858, True), (1234567898765
 
 -- Exercise 6 -----------------------------------------
 
+testHanoi :: (Integer, Peg, Peg, Peg, [Move]) -> Bool
+testHanoi (n, s, g, t, moves) = (hanoi n s g t) == moves
+
 ex6Tests :: [Test]
-ex6Tests = []
+ex6Tests = [ Test "hanoi test" testHanoi [(2, "a" :: Peg, "b" :: Peg, "c" :: Peg, [("a" :: Peg, "c" :: Peg), ("a" :: Peg, "b" :: Peg), ("c" :: Peg, "b" :: Peg)])]]
 
 -- All Tests ------------------------------------------
 

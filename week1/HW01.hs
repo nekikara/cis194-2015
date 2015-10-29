@@ -50,4 +50,5 @@ type Peg = String
 type Move = (Peg, Peg)
 
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
-hanoi = undefined
+hanoi n start goal temp | n == 1 = [(start, goal)]
+                        | otherwise = (hanoi (n-1) start temp goal) ++ (hanoi 1 start goal temp) ++ (hanoi (n-1) temp goal start)

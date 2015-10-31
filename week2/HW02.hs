@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 module HW02 where
+import Data.List
 
 -- Mastermind -----------------------------------------
 
@@ -21,9 +22,14 @@ colors = [Red, Green, Blue, Yellow, Orange, Purple]
 
 -- Exercise 1 -----------------------------------------
 
+countMatch :: Int -> (Peg, Peg) -> Int
+countMatch acc test
+    | fst test == snd test = acc + 1
+    | otherwise = acc
+
 -- Get the number of exact matches between the actual code and the guess
 exactMatches :: Code -> Code -> Int
-exactMatches = undefined
+exactMatches breaker maker = foldl countMatch 0 (zip breaker maker)
 
 -- Exercise 2 -----------------------------------------
 

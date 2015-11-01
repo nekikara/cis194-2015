@@ -29,17 +29,26 @@ countMatch acc test
 
 -- Get the number of exact matches between the actual code and the guess
 exactMatches :: Code -> Code -> Int
-exactMatches breaker maker = foldl countMatch 0 (zip breaker maker)
+exactMatches breaker maker = foldl (\acc test -> if fst test == snd test then acc + 1 else acc) 0 (zip breaker maker)
 
 -- Exercise 2 -----------------------------------------
 
 -- For each peg in xs, count how many times is occurs in ys
+countUp :: [Int] -> Peg -> [Int]
+countUp acc peg
+    | peg == Red = [(acc !! 0) + 1] ++ tail acc
+    | peg == Green = [head acc, (acc !! 1) + 1, acc !! 2, acc !! 3, acc !! 4, acc !! 5]
+    | peg == Blue = [(acc !! 0), (acc !! 1), (acc !! 2) + 1, acc !! 3, acc !! 4, acc !! 5]
+    | peg == Yellow = [(acc !! 0), (acc !! 1), (acc !! 2), (acc !! 3) + 1, acc !! 4, acc !! 5]
+    | peg == Orange = [(acc !! 0), (acc !! 1), (acc !! 2), (acc !! 3), (acc !! 4) + 1, acc !! 5]
+    | peg == Purple = [(acc !! 0), (acc !! 1), (acc !! 2), (acc !! 3), (acc !! 4), (acc !! 5) + 1]
+
 countColors :: Code -> [Int]
-countColors = undefined
+countColors = foldl countUp [0, 0, 0, 0, 0, 0]
 
 -- Count number of matches between the actual code and the guess
 matches :: Code -> Code -> Int
-matches = undefined
+matches breaker maker = foldl (\acc result -> acc + (min (fst result) (snd result))) 0 $ zip (countColors breaker) (countColors maker)
 
 -- Exercise 3 -----------------------------------------
 

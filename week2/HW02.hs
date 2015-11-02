@@ -54,7 +54,9 @@ matches breaker maker = foldl (\acc result -> acc + (min (fst result) (snd resul
 
 -- Construct a Move from a guess given the actual code
 getMove :: Code -> Code -> Move
-getMove = undefined
+getMove secret guess = let exact = exactMatches secret guess
+                           noexact = (matches secret guess) - exact
+                       in Move guess exact noexact
 
 -- Exercise 4 -----------------------------------------
 

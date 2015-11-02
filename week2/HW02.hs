@@ -61,7 +61,7 @@ getMove secret guess = let exact = exactMatches secret guess
 -- Exercise 4 -----------------------------------------
 
 isConsistent :: Move -> Code -> Bool
-isConsistent = undefined
+isConsistent move@(Move guess _ _) secret = getMove secret guess == move
 
 -- Exercise 5 -----------------------------------------
 

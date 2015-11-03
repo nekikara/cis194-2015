@@ -54,7 +54,15 @@ ex4Tests = [ testF2 "isConsistent test" isConsistent
 -- Exercise 5 -----------------------------------------
 
 ex5Tests :: [Test]
-ex5Tests = []
+ex5Tests = [ testF2 "filterCodes test" filterCodes
+             [ ( Move [Red, Red, Blue, Green] 1 1
+               , [[Red, Blue, Yellow, Purple], [Blue, Blue, Blue, Blue], [Yellow, Yellow, Yellow, Yellow]]
+               , [[Red, Blue, Yellow, Purple]] )
+             , ( Move [Red, Blue, Blue, Green] 3 0
+               , [[Red, Blue, Yellow, Green], [Blue, Yellow, Red, Yellow]]
+               , [[Red, Blue, Yellow, Green]] )
+             ]
+           ]
 
 -- Exercise 6 -----------------------------------------
 

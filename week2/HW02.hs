@@ -66,7 +66,7 @@ isConsistent move@(Move guess _ _) secret = getMove secret guess == move
 -- Exercise 5 -----------------------------------------
 
 filterCodes :: Move -> [Code] -> [Code]
-filterCodes move codes = filter  (isConsistent move) codes
+filterCodes move = filter (isConsistent move)
 
 -- Exercise 6 -----------------------------------------
 
